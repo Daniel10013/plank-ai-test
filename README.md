@@ -15,7 +15,6 @@ This project is a full-stack application built with Node.js (backend) and React 
   - Installation & Setup
   - Features
   - Input Validation
-- Sample Data
 - Technologies Used
 
 ---
