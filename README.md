@@ -33,25 +33,39 @@ This app processes user activity logs from a CSV source and allows:
 
 ### Installation & Setup
 
-1. Clone the repository:
-   git clone https://your-repository-url
-   cd your-project-folder
+Clone the repository and go to the API folder:
+```
+git clone https://github.com/Daniel10013/plank-ai-test.git
+cd api   
+```
 
-2. Install dependencies:
-   npm install
+Install dependencies:
+```
+npm install
+```
 
-3. Start the development server:
-   npm run dev
-
-4. (Optional) Load the CSV data manually:
-   curl -X POST http://localhost:3000/load
-
+Start the development server:
+```
+npm run dev
+```
+   
 ### API Endpoints
 
-POST /load
-Fetches and loads the activities CSV into memory.
+#### Load Data
 
+```
+GET /load_data
+```
+Fetch the data from the CSV file online, and store it on the runtime memory.
+
+No response is provided, only a message and the status to tell if it worked or no.
+
+# 
+
+#### User Summary
+```
 GET /summary/:userId
+```
 Returns a summary of a specific user's activity.
 
 Query Parameters (optional):
@@ -59,17 +73,29 @@ Query Parameters (optional):
 - end_time (ISO 8601)
 
 Example:
+```
 GET /summary/42?start_time=2024-01-01T00:00:00Z&end_time=2024-06-30T23:59:59Z
+```
 
 Response:
+```json
 {
-  "total_actions": 8,
-  "most_frequent_action": "click",
-  "average_duration": 128.5,
-  "most_frequent_page": "dashboard"
+    summary: {
+    "total_actions": 8,
+    "most_frequent_action": "click",
+    "average_duration": 128.5,
+    "most_frequent_page": "dashboard"
+    }, 
+    status: true | false
 }
+```
+# 
 
+#### Actions trends
+
+```
 GET /action_trends
+```
 Returns the top 3 (user_id + action) pairs by frequency in a time range.
 
 Query Parameters (required):
@@ -77,19 +103,21 @@ Query Parameters (required):
 - end_time (ISO 8601)
 
 Example:
+```
 GET /action_trends?start_time=2024-01-01T00:00:00Z&end_time=2024-12-31T23:59:59Z
+```
 
 Response:
+```json
 {
-  "status": true,
   "trending_actions": [
     { "user_id": 81, "action": "upload", "count": 4 },
     { "user_id": 54, "action": "view", "count": 3 },
     { "user_id": 66, "action": "login", "count": 3 }
-  ]
+  ],
+  "status": true | false,
 }
-
----
+```
 
 ### Data Validation & Performance
 
@@ -110,13 +138,14 @@ Response:
 ## Frontend
 
 ### Installation & Setup
+Run the following commands:
+```
+cd front-end
+npm install
+npm run dev
+```
 
-1. Go to the client directory:
-   cd client
-   npm install
-   npm run dev
-
-2. Access the app:
+Access the app at:
    http://localhost:5173
 
 ### Features
@@ -147,28 +176,11 @@ User-Action Trends
 - Toast notifications show success or error messages
 - Invalid inputs (e.g., empty fields or wrong formats) are rejected
 
----
-
-## Sample Data
-
-The app expects a CSV in this format:
-
-user_id,timestamp,action,metadata
-42,2024-05-01T12:30:00Z,login,{"page": "home", "duration": 120}
-
-- user_id: Integer
-- timestamp: ISO 8601 format
-- action: String (e.g., login, click)
-- metadata: JSON string (must include "page" and "duration")
-
----
-
 ## Technologies Used
 
 Backend:
 - Node.js
 - Express
-- csv-parser
 - TypeScript
 
 Frontend:
@@ -177,8 +189,8 @@ Frontend:
 - Chart.js (via react-chartjs-2)
 - React Toastify
 
----
-
 ## Author
 
-Project built as a full-stack technical challenge, with a focus on performance, data integrity, and clarity in UI/UX.
+Project built as a full-stack technical challenge, with a focus on performance, data integrity.
+
+Developed by: [Daniel Filipe](https://linkedin.com/in/daniel-filipe-cv)
