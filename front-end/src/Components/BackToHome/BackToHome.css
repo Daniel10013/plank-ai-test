@@ -1,0 +1,16 @@
+.back-div{
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 0.2s ease-in-out;
+}
+
+.back-div span {
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  color: #858585;
+}
+
+.back-div span:hover {
+  color: rgb(19, 19, 19);
+}

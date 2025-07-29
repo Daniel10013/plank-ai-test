@@ -15,6 +15,10 @@ class ActivityController {
     public loadActivityData = async (req: Request, res: Response): Promise<void> => {
         try {
             if (activityData.length != 0) {
+                res.status(200).json({
+                    message: "Data already stored!",
+                    status: true
+                })
                 return;
             }
             const fetchedData: Activity[] = await this.service.fetchActivityData();
@@ -23,6 +27,7 @@ class ActivityController {
                 message: "Successfully stored data",
                 status: true
             })
+            return;
         }
         catch (err) {
             const error = err as Error;
@@ -44,6 +49,7 @@ class ActivityController {
                     message: 'invalid user_id',
                     status: false
                 });
+                return;
             }
 
             const startTime = start_time ? new Date(start_time as string) : undefined;
@@ -58,6 +64,7 @@ class ActivityController {
                 summary: summary,
                 status: true
             })
+            return;
         }
         catch (err) {
             const error = err as Error;
@@ -85,6 +92,7 @@ class ActivityController {
                 trending_actions: tredingActions,
                 status: true
             })
+            return;
         }
         catch (err) {
             const error = err as Error;

@@ -1,0 +1,29 @@
+
+.buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 50px;
+}
+
+.home-button{
+  height: 150px;
+  width: 500px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background-color: white;
+  color: rgb(97, 10, 179);
+  border: solid 1px rgb(97, 10, 179);
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.home-button:hover {
+  background-color: rgb(97, 10, 179);
+  color: white;
+}
